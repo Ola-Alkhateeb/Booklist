@@ -2,8 +2,8 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      Books: []
-    }
+ currentBook: this.props.booklist,
+      items: this.props.booklist.items    }
   }
 
  handleClick(event){
@@ -11,17 +11,18 @@ class App extends React.Component {
   console.log("clicked");
  }
 
- onChange(){
-  // this.setState({Books});
-  $('#mySearch').val()
-
- }
-  getNYBooks(query) {
+  getGoogleBooks(query) {
     var options = {
-      max:5,
-      key: this.props.API_KEY,
-      query: query
+      key: 'AIzaSyCmbVwkiwCRZ6ShsAjVGF7Bt5SYO-DFA4w',
+      q: query
+
     };
+
+    searchGoogle(options, items => {
+      this.setState({currentBook: items[0],
+                     items: items});
+    });
+
   }
 
 
@@ -29,20 +30,21 @@ class App extends React.Component {
      return (
       <div>
       <h1>BoooksHub</h1>
-      <input type="text"   onChange={this.onChange} id= "mySearch"/>
-      <input type="button" onClick={this.handleClick} value="Search" />
-      <div>
-      <div className="book-view">
-      Book
-    </div>
+      
+          <Nav search={this.getGoogleBooks.bind(this)}/>
+
+      <h2> bookList:</h2>
+      {this.props.booklist.items.map(item => 
+        <li item={item}>{item.volumeInfo.title} by:{item.volumeInfo.authors} 
+         </li>)}
+
     <div className="book-details">
-      <h3></h3>
     </div>
         </div>
-            </div>
+       
     )
  }
 }
 window.App = App;
 
-ReactDOM.render(<App />, document.getElementById('app'))
+ReactDOM.render(<App booklist={data[0]}/>, document.getElementById('app'))

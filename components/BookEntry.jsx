@@ -1,23 +1,21 @@
-/* START SOLUTION */
-var BookEntry = ({book,  handleBookEntryTitleClick}) => (
-  <div className="book-list-entry">
+var BookListEntry = ({item}) => (
+  <div className="video-list-entry">
     <div className="media-left media-middle">
-     <img className="media-object"alt="" />
+      <img className="media-object" src={item.volumeInfo.imageLinks ? item.volumeInfo.imageLinks.thumbnail : null} alt="" />
     </div>
     <div className="media-body">
-      <div 
-        className="book-list-entry-title"
-        onClick={() => handleBookEntryTitleClick(book)}
-      >
-        {video.snippet.title}
-      </div>
-      <div className="book-list-entry-detail"></div>
+      <div className="video-list-entry-title" >{item.volumeInfo.title}</div>
+      <div className="video-list-entry-detail">{item.volumeInfo.authors}</div>
     </div>
   </div>
 );
 
-BookEntry.propTypes = {
-  Book: React.PropTypes.object.isRequired
+// PropTypes tell other developers what `props` a component expects
+// Warnings will be shown in the console when the defined rules are violated
+BookListEntry.propTypes = {
+ item: React.PropTypes.object.isRequired
 };
 
-window.BookEntry = BookEntry;
+// In the ES6 spec, files are "modules" and do not share a top-level scope
+// `var` declarations will only exist globally where explicitly defined
+window.BookListEntry = BookListEntry;

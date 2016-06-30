@@ -4,11 +4,10 @@ var searchGoogle = (options, callback) => {
         {
          q: options.q,
          key: options.key },
-
-         function(data){
+         (data) =>{
             callback(data.items)
          }
-     )
+     );
 };
 
 window.searchGoogle = searchGoogle;

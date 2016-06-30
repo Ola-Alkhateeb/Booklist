@@ -1,8 +1,5 @@
 
-window.data=[{
-  "kind": "books#volumes",
-  "totalItems": 583,
-  "items": [
+window.data=[
     {
       "kind": "books#volume",
       "id": "zYw3sYFtz9kC",
@@ -678,4 +675,3 @@ window.data=[{
       }
     }
   ]
-}]

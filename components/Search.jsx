@@ -1,9 +1,11 @@
 var Search = ({search}) => (
   <div className="search-bar form-inline">
-    <input className="form-control" type="text" id='s' onChange = {()=>search($('#s').val())}/>
-    <button className="btn hidden-sm-down">
-      <span className="glyphicon glyphicon-search"></span>
-    </button>
+    <div className="input-group">
+      <input type="text" className="form-control" id='s' onChange = {()=>search($('#s').val())}placeholder="Search for..."/>
+      <span className="input-group-btn">
+        <button className="btn btn-default" type="button">Search</button>
+      </span>
+    </div>
   </div> 
 );
 
